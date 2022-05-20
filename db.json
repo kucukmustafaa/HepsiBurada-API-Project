@@ -1,0 +1,40 @@
+{
+  "allGrocery": {"data": [
+    {
+      "id": 1,
+      "name": "apple",
+      "price": 3,
+      "stock": 100
+    },
+    {
+      "id": 2,
+      "name": "grapes",
+      "price": 5,
+      "stock": 50
+    },
+    {
+      "id": 3,
+      "name": "grapes",
+      "price": 5,
+      "stock": 50
+    },
+    {
+      "id": 4,
+      "name": "grapes",
+      "price": 5,
+      "stock": 50
+    },
+    {
+      "id": 5,
+      "name": "grapes",
+      "price": 5,
+      "stock": 50
+    }
+  ]
+  },
+  "comments": [
+    { "id": 1, "body": "some comment", "postId": 1 }
+  ]
+}
+
+
