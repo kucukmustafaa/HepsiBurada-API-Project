@@ -38,7 +38,7 @@ public class APIResponseFilter implements Filter {
                 true);
 
         Markup markupRequest = MarkupHelper.createCodeBlock(requestStr);
-        Markup markupResponse = MarkupHelper.createCodeBlock(requestStr);
+        Markup markupResponse = MarkupHelper.createCodeBlock(responseStr);
 
         ExtentReportManager.getExtentTest().log(Status.INFO, markupRequest);
         ExtentReportManager.getExtentTest().log(Status.INFO,markupResponse);
