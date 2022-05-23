@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class HBTestExample {
 
 
-    @Test(groups = "e2e")
+    @Test(groups = "e2e",description = "Tüm ürünlerin listelenmesi")
     public void test1(){
         HttpClient httpClient=new HttpClient();
         Response response=httpClient.get("/allGrocery");
@@ -22,7 +22,7 @@ public class HBTestExample {
     }
 
 
-    @Test(groups = "e2e")
+    @Test(groups = "e2e",description = "Tüm ürünlerin içinde bir ürünün aranması")
     public void test2(){
         HttpClient httpClient=new HttpClient();
         Response response=httpClient.getWithPathParam("/allGrocery","apple");
@@ -30,8 +30,7 @@ public class HBTestExample {
         Assert.assertEquals(response.getStatusCode(),200);
     }
 
-
-    @Test(groups = "e2e")
+    @Test(groups = "e2e",description = "Başarılı şekilde ürün ekleme")
     public void test3(){
 
         Vegetable vegetable=Vegetable.
