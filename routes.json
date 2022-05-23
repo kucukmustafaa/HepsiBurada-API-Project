@@ -1,0 +1,3 @@
+{
+  "/allGrocery/:name": "/allGrocery?name=:name"
+}

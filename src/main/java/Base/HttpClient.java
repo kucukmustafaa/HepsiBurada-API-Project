@@ -1,6 +1,8 @@
 package Base;
 
 
+import Config.SpecBuilder;
+import Utils.APIResponseFilter;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
@@ -11,8 +13,7 @@ public class HttpClient {
     public Response post(String path,Object object){
 
         return given().
-                log().all().
-                header("content-type","application/json").
+                spec(SpecBuilder.getNormalUserSpec()).
                 body(object).
                 when().
                 post(path);
@@ -23,8 +24,7 @@ public class HttpClient {
     public Response put(String path,Object object){
 
         return given().
-                log().all().
-                header("content-type","application/json").
+                spec(SpecBuilder.getNormalUserSpec()).
                 body(object).
                 when().
                 put(path);
@@ -34,8 +34,7 @@ public class HttpClient {
     public Response get(String path){
 
         return given().
-                log().all().
-                header("content-type","application/json").
+                spec(SpecBuilder.getNormalUserSpec()).
                 when().
                 get(path);
     }
@@ -43,18 +42,17 @@ public class HttpClient {
     public Response getWithPathParam(String path,String pathParam){
 
         return given().
-                log().all().
-                header("content-type","application/json").
-                when().pathParam("","").
-                get(path);
+                spec(SpecBuilder.getNormalUserSpec()).
+                when().
+                pathParam("pathParam",pathParam ).
+                get(path+"{pathParam}");
     }
 
 
     public Response delete(String path){
 
         return given().
-                log().all().
-                header("content-type","application/json").
+                spec(SpecBuilder.getNormalUserSpec()).
                 when().
                 delete(path);
     }

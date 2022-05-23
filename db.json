@@ -1,40 +1,15 @@
 {
-  "allGrocery": {"data": [
-    {
-      "id": 1,
-      "name": "apple",
-      "price": 3,
-      "stock": 100
-    },
-    {
-      "id": 2,
-      "name": "grapes",
-      "price": 5,
-      "stock": 50
-    },
-    {
-      "id": 3,
-      "name": "grapes",
-      "price": 5,
-      "stock": 50
-    },
-    {
-      "id": 4,
-      "name": "grapes",
-      "price": 5,
-      "stock": 50
-    },
-    {
-      "id": 5,
-      "name": "grapes",
-      "price": 5,
-      "stock": 50
-    }
-  ]
+  "allGrocery": {
+    "id": 1,
+    "name": "elma",
+    "price": 3.43,
+    "stock": 3
   },
   "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
   ]
 }
-
-
