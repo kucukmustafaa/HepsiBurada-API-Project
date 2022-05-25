@@ -10,7 +10,6 @@ public class SpecBuilder {
 
         RequestSpecification requestSpecification= RestAssured.given().
                 log().all().
-                baseUri(Config.PROD_URL).
                 filter(new APIResponseFilter()).
                 header("content-type","application/json");
 
@@ -21,7 +20,6 @@ public class SpecBuilder {
 
         RequestSpecification requestSpecification= RestAssured.given().
                 log().all().
-                baseUri(Config.PROD_URL).
                 filter(new APIResponseFilter()).
                 header("content-type","application/json").
                 header("token","EFSAA-2SAFAS-ASFA2-12212");

@@ -1,6 +1,7 @@
 package Test;
 
 import Base.HttpClient;
+import Config.Config;
 import Model.Request.Vegetable;
 import Model.Response.VegetableListResponse;
 import io.restassured.mapper.ObjectMapperType;
@@ -14,7 +15,7 @@ public class HBTestExample {
 
     @Test(groups = "e2e",description = "Tüm ürünlerin listelenmesi")
     public void test1(){
-        HttpClient httpClient=new HttpClient();
+        HttpClient httpClient=new HttpClient(Config.PROD_URL);
         Response response=httpClient.get("/allGrocery");
         VegetableListResponse vegetableListResponse=response.then().extract().as(VegetableListResponse.class, ObjectMapperType.GSON);
         Assert.assertEquals(response.getStatusCode(),200);
@@ -22,16 +23,25 @@ public class HBTestExample {
     }
 
 
-    @Test(groups = "e2e",description = "Tüm ürünlerin içinde bir ürünün aranması")
+    @Test(groups = "e2e",description = "Tüm ürünlerin listelenmesi yanlis endpoint girilmesi")
     public void test2(){
-        HttpClient httpClient=new HttpClient();
+        HttpClient httpClient=new HttpClient(Config.PROD_URL);
+        Response response=httpClient.get("/allGroceryasdaf");
+        VegetableListResponse vegetableListResponse=response.then().extract().as(VegetableListResponse.class, ObjectMapperType.GSON);
+        Assert.assertEquals(response.getStatusCode(),404);
+    }
+
+
+    @Test(groups = "e2e",description = "Tüm ürünlerin içinde bir ürünün aranması")
+    public void test3(){
+        HttpClient httpClient=new HttpClient(Config.PROD_URL);
         Response response=httpClient.getWithPathParam("/allGrocery","apple");
         VegetableListResponse vegetableListResponse=response.then().extract().as(VegetableListResponse.class, ObjectMapperType.GSON);
         Assert.assertEquals(response.getStatusCode(),200);
     }
 
-    @Test(groups = "e2e",description = "Başarılı şekilde ürün ekleme")
-    public void test3(){
+    @Test(groups = "e2e",description = "Başarılı ürün ekleme")
+    public void test4(){
 
         Vegetable vegetable=Vegetable.
                     builder().
@@ -41,10 +51,27 @@ public class HBTestExample {
                     stock(3).
                     build();
 
-        HttpClient httpClient=new HttpClient();
+        HttpClient httpClient=new HttpClient(Config.PROD_URL);
         Response response=httpClient.post("/allGrocery",vegetable);
         VegetableListResponse vegetableListResponse=response.then().extract().as(VegetableListResponse.class, ObjectMapperType.GSON);
         Assert.assertEquals(response.getStatusCode(),201);
+    }
+
+    @Test(groups = "e2e",description = "Başarılı şekilde ürün ekleme")
+    public void test5(){
+
+        Vegetable vegetable=Vegetable.
+                            builder().
+                            id(1).
+                            name("elma").
+                            price(3.43f).
+                            stock(3).
+                            build();
+
+        HttpClient httpClient=new HttpClient(Config.INVALID_URL);
+        Response response=httpClient.post("/allGrocery",vegetable);
+        VegetableListResponse vegetableListResponse=response.then().extract().as(VegetableListResponse.class, ObjectMapperType.GSON);
+        Assert.assertEquals(response.getStatusCode(),404);
     }
 
 }
