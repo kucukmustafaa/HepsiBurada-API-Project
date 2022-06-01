@@ -9,11 +9,21 @@
 
 
     <test name="com.sfas" parallel="methods" thread-count="4">
+
+        <groups>
+            <run>
+                <include name = "smoke"></include>
+            </run>
+        </groups>
+
         <classes>
             <class name="Test.HBTestExample">
 
             </class>
         </classes>
+
+
+
     </test>
 
 </suite>
